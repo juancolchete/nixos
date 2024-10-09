@@ -4,7 +4,8 @@
 
 { config, pkgs, ... }:
 
-{
+let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -86,10 +87,11 @@
     packages = with pkgs; [
       rustdesk
       vim
-      neovim
+      unstable.neovim
       docker
       git
       chromium
+      lazygit
     ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
