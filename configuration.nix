@@ -9,8 +9,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-    ];
-
+    ]; 
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -92,9 +91,19 @@ in {
       git
       chromium
       lazygit
-    ];
+      nodejs
+      ripgrep
+      xsel
+      ngrok
+      rustup 
+      gcc
+      clang
+      gnumake42
+   ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #environment.variables.LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
   services.qemuGuest.enable = true;
   # Install firefox.
   programs.firefox.enable = true;
@@ -105,8 +114,13 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  	git
-	vim
+      wget 
+      vim  
+      git 
+      gcc 
+      rustup 
+      clang
+      gnumake42
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
