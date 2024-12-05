@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; vars = import ./env.nix;
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -99,6 +99,7 @@ in {
       gcc
       clang
       gnumake42
+      corepack_22
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
@@ -122,6 +123,10 @@ in {
       clang
       gnumake42
   ];
+networking.wireguard.enable = true;
+networking.wg-quick.interfaces = {
+  wg0 = vars.wg0; 
+};
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
