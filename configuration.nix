@@ -123,10 +123,10 @@ in {
       clang
       gnumake42
   ];
-networking.wireguard.enable = true;
-networking.wg-quick.interfaces = {
-  wg0 = vars.wg0; 
-};
+  networking.wireguard.enable = true;
+  networking.wg-quick.interfaces = {
+    wg0 = vars.wg0; 
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
