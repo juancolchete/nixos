@@ -103,6 +103,7 @@ in {
       clang
       gnumake42
       corepack_22
+      keepassxc
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
