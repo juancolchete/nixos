@@ -4,11 +4,15 @@
 
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; vars = import ./env.nix;
+let 
+unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; 
+vars = import ./env.nix;
+home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+       (import "${home-manager}/nixos")
     ]; 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -123,6 +127,22 @@ in {
       clang
       gnumake42
   ];
+  home-manager.users.juanc = {
+    programs.git = {
+      enable = true;
+      userName = vars.userName;
+      userEmail = vars.userEmail;
+    };
+    home.stateVersion = "24.05";
+  };
+  programs.ssh.startAgent = true;
+  #programs.ssh.identities = [ "/home/juanc/.ssh/github" ];
+  programs.ssh.extraConfig = ''
+    Host *
+     AddKeysToAgent true
+     IdentityFile ~/.ssh/github
+
+  '';
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg0 = vars.wg0; 
