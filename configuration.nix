@@ -5,9 +5,9 @@
 { config, pkgs, ... }:
 
 let 
-unstable = import <nixos-unstable> { config = { allowUnfree = true; }; }; 
+unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };  
 vars = import ./env.nix;
-home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -15,9 +15,8 @@ in {
        (import "${home-manager}/nixos")
     ]; 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -133,7 +132,7 @@ in {
       userName = vars.userName;
       userEmail = vars.userEmail;
     };
-    home.stateVersion = "24.05";
+    home.stateVersion = "24.11";
   };
   programs.ssh.startAgent = true;
   #programs.ssh.identities = [ "/home/juanc/.ssh/github" ];
@@ -173,6 +172,6 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
 }
