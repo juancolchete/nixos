@@ -104,10 +104,6 @@ in {
       gnumake42
       corepack_22
       keepassxc
-      discord
-      spotify
-      signal
-      telegram
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
