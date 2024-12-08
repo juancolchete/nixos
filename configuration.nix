@@ -106,7 +106,7 @@ in {
       keepassxc
       discord
       spotify
-      signal
+      signal-desktop
       telegram
    ];
   };
