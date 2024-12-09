@@ -107,7 +107,8 @@ in {
       discord
       spotify
       signal-desktop
-      telegram
+      telegram-desktop
+      anchor
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
