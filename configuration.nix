@@ -88,7 +88,6 @@ in {
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       rustdesk
-      vim
       unstable.neovim
       docker
       git
@@ -98,17 +97,15 @@ in {
       ripgrep
       xsel
       ngrok
-      rustup 
-      gcc
-      clang
-      gnumake42
       corepack_22
       keepassxc
       discord
       spotify
       signal-desktop
       telegram-desktop
+      solana-cli
       anchor
+      rustup
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
@@ -128,7 +125,6 @@ in {
       vim  
       git 
       gcc 
-      rustup 
       clang
       gnumake42
   ];
@@ -179,5 +175,12 @@ in {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
+  system.activationScripts.rustup = ''
+    PATH=${pkgs.rustup}/bin:/home/juanc/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:$PATH
+    runuser -u juanc rustup toolchain install 1.79.0
+    runuser -u juanc rustup default 1.79.0 
+    alias build-sbf=/home/juanc/projects/solana/build-sbf
+'';
+   
+  environment.variables.PATH = "${pkgs.rustup}/bin:/home/juanc/.cargo/bin:$PATH";
 }
