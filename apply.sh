@@ -1,3 +1,4 @@
+[ ! -d ".env" ] && source .env
 sudo chown -R juanc /etc/nixos
 source .env
 if [[ -z "$var" ]]; then
@@ -21,3 +22,4 @@ git remote -v | grep -w origin && git remote set-url origin git@github.com:juanc
 git branch -m main
 git push --set-upstream origin main
 git pull
+sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs

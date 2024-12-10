@@ -103,12 +103,11 @@ in {
       spotify
       signal-desktop
       telegram-desktop
-      solana-cli
-      anchor
-      rustup
+       
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   #environment.variables.LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
   services.qemuGuest.enable = true;
@@ -127,6 +126,21 @@ in {
       gcc 
       clang
       gnumake42
+      cmake
+      pkg-config 
+      llvm
+      hidapi
+      systemd
+      udev
+      openssl
+      solana-cli
+      anchor
+      rustup
+      pkg-config
+      rustfmt
+      llvm
+      protobuf
+      zlib
   ];
   home-manager.users.juanc = {
     programs.git = {
@@ -176,11 +190,23 @@ in {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
   system.activationScripts.rustup = ''
-    PATH=${pkgs.rustup}/bin:/home/juanc/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:$PATH
+    PATH=${pkgs.rustup}/bin:/home/juanc/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/nix/store/8rq01kg6lng5d1fz5wd0mfn2yjaww9sq-system-path/bin/tar:/run/current-system/sw/bin/clang:$PATH
     runuser -u juanc rustup toolchain install 1.79.0
-    runuser -u juanc rustup default 1.79.0 
-    alias build-sbf=/home/juanc/projects/solana/build-sbf
+    runuser -u juanc rustup default 1.79.0
+    touch /home/juanc/.bashrc 
+    rm /home/juanc/.bashrc
+    touch /home/juanc/.bashrc 
+    echo export PATH=${pkgs.solana-cli}:/home/juanc/programs/bin:'$PATH' >> /home/juanc/.bashrc
+    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/juanc/.bashrc
+    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/juanc/.bashrc
+    echo ${pkgs.systemd.dev}
+    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/juanc/.bashrc
+    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/juanc/.bashrc
+    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/juanc/.bashrc
+    echo export CC=/run/current-system/sw/bin/clang >> /home/juanc/.bashrc
+    source /home/juanc/.bashrc
+    [ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
 '';
+
    
-  environment.variables.PATH = "${pkgs.rustup}/bin:/home/juanc/.cargo/bin:$PATH";
 }
