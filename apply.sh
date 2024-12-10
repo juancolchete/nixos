@@ -1,4 +1,4 @@
-[ ! -d ".env" ] && source .env
+[ -d ".env" ] && source .env
 sudo chown -R juanc /etc/nixos
 source .env
 if [[ -z "$var" ]]; then
