@@ -1,10 +1,11 @@
-[ -d ".env" ] && source .env
+if [ -e ".env" ]; then
+    source .env
+fi 
 sudo chown -R juanc /etc/nixos
-source .env
-if [[ -z "$var" ]]; then
+if [[ -z "server" ]]; then
   read -p 'server: ' server
 fi
-if [[ -z "$var" ]]; then
+if [[ -z "share" ]]; then
   read -p 'share: ' share
 fi
 gio copy smb://$server/$share/apply.sh /etc/nixos/apply.sh
