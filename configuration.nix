@@ -205,6 +205,11 @@ in {
     echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/juanc/.bashrc
     echo export CC=/run/current-system/sw/bin/clang >> /home/juanc/.bashrc
     source /home/juanc/.bashrc
+    touch /home/juanc/programs/solana/rust-toolchain.toml
+    rm /home/juanc/programs/solana/rust-toolchain.toml
+    touch /home/juanc/programs/solana/rust-toolchain.toml
+    echo '[toolchain]' >> /home/juanc/programs/solana/rust-toolchain.toml
+    echo 'channel = "1.79.0"' >> /home/juanc/programs/solana/rust-toolchain.toml
     [ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
 '';
 

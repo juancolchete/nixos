@@ -28,4 +28,5 @@ git remote -v | grep -w origin && git remote set-url origin git@github.com:juanc
 git branch -m main
 git push --set-upstream origin main
 git pull
+rustup use 1.79.0
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
