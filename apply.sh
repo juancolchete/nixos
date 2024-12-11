@@ -24,6 +24,7 @@ sudo nix-channel --update
 sudo nixos-rebuild switch
 cd /etc/nixos
 git init
+git config pull.rebase false
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
 git branch -m main
 git branch --set-upstream-to=origin/main main
