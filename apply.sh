@@ -2,10 +2,10 @@ if [ -e "/etc/nixos/.env" ]; then
     source /etc/nixos/.env
 fi
 sudo chown -R juanc /etc/nixos
-if [[ -z "server" ]]; then
+if [[ ! -z "server" ]]; then
   read -p 'server: ' server
 fi
-if [[ -z "share" ]]; then
+if [[ ! -z "share" ]]; then
   read -p 'share: ' share
 fi
 if [ ! -e "~/.ssh/github" ]; then
