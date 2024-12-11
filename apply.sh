@@ -26,8 +26,7 @@ cd /etc/nixos
 git init
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
 git branch -m main
-git push --set-upstream origin main
-git pull
+git pull --set-upstream origin main
 rustup use 1.79.0
 touch /home/juanc/programs/solana/rust-toolchain.toml
 rm /home/juanc/programs/solana/rust-toolchain.toml
