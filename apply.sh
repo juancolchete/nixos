@@ -26,7 +26,8 @@ cd /etc/nixos
 git init
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
 git branch -m main
-git pull origin main
+git branch --set-upstream-to=origin/main main
+git pull
 source ~/.bashrc
 mkdir -p /home/juanc/programs
 [ ! -d "/home/juanc/programs/solana" ] && git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
