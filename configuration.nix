@@ -140,6 +140,8 @@ in {
       llvm
       protobuf
       zlib
+      steam-run
+      solana-cli
   ];
   home-manager.users.juanc = {
     programs.git = {
