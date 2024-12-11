@@ -35,4 +35,4 @@ rm /home/juanc/programs/solana/rust-toolchain.toml
 touch /home/juanc/programs/solana/rust-toolchain.toml
 echo '[toolchain]' >> /home/juanc/programs/solana/rust-toolchain.toml
 echo 'channel = "1.79.0"' >> /home/juanc/programs/solana/rust-toolchain.toml
-sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/program
+sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
