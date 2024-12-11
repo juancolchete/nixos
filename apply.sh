@@ -28,10 +28,10 @@ git remote -v | grep -w origin && git remote set-url origin git@github.com:juanc
 git branch -m main
 git pull --set-upstream origin main
 rustup use 1.79.0
+[ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
 touch /home/juanc/programs/solana/rust-toolchain.toml
 rm /home/juanc/programs/solana/rust-toolchain.toml
 touch /home/juanc/programs/solana/rust-toolchain.toml
 echo '[toolchain]' >> /home/juanc/programs/solana/rust-toolchain.toml
 echo 'channel = "1.79.0"' >> /home/juanc/programs/solana/rust-toolchain.toml
-[ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/program
