@@ -1,6 +1,6 @@
-if [ -e ".env" ]; then
-    source .env
-fi 
+if [ -e "/etc/nixos/.env" ]; then
+    source /etc/nixos/.env
+fi
 sudo chown -R juanc /etc/nixos
 if [[ -z "server" ]]; then
   read -p 'server: ' server
@@ -8,14 +8,14 @@ fi
 if [[ -z "share" ]]; then
   read -p 'share: ' share
 fi
-if [ -e "~/.ssh/github" ]; then
+if [ ! -e "~/.ssh/github" ]; then
   gio copy smb://$server/$share/keys/github ~/.ssh/github
 fi
-if [ -e "~/.ssh/github.pub" ]; then
+if [ ! -e "~/.ssh/github.pub" ]; then
   gio copy smb://$server/$share/keys/github.pub ~/.ssh/github.pub
   chmod  400 ~/.ssh/github
 fi
-if [ -e "/etc/nixos/env.nix" ]; then
+if [ ! -e "/etc/nixos/env.nix" ]; then
   gio copy smb://$server/$share/keys/envs/env.nix /etc/nixos/env.nix
 fi
 curl https://raw.githubusercontent.com/juancolchete/nixos/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
@@ -35,4 +35,4 @@ touch /home/juanc/programs/solana/rust-toolchain.toml
 echo '[toolchain]' >> /home/juanc/programs/solana/rust-toolchain.toml
 echo 'channel = "1.79.0"' >> /home/juanc/programs/solana/rust-toolchain.toml
 [ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
-sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
+sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/program
