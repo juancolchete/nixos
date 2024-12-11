@@ -133,7 +133,6 @@ in {
       systemd
       udev
       openssl
-      solana-cli
       anchor
       rustup
       pkg-config
