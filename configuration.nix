@@ -205,6 +205,7 @@ in {
     echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/juanc/.bashrc
     echo export CC=/run/current-system/sw/bin/clang >> /home/juanc/.bashrc
     source /home/juanc/.bashrc
+    alias build-sbf=cargo-build-sbf
 '';
 
    
