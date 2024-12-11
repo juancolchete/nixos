@@ -205,6 +205,8 @@ in {
     echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/juanc/.bashrc
     echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/juanc/.bashrc
     echo export CC=/run/current-system/sw/bin/clang >> /home/juanc/.bashrc
+    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/juanc/.bashrc
+    echo alias build-sbf=cargo-build-sbf >> /home/juanc/.bashrc
     source /home/juanc/.bashrc
     alias build-sbf=cargo-build-sbf
 '';
