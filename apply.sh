@@ -29,4 +29,10 @@ git branch -m main
 git push --set-upstream origin main
 git pull
 rustup use 1.79.0
+touch /home/juanc/programs/solana/rust-toolchain.toml
+rm /home/juanc/programs/solana/rust-toolchain.toml
+touch /home/juanc/programs/solana/rust-toolchain.toml
+echo '[toolchain]' >> /home/juanc/programs/solana/rust-toolchain.toml
+echo 'channel = "1.79.0"' >> /home/juanc/programs/solana/rust-toolchain.toml
+[ ! -d "/home/juanc/programs/solana" ] && runuser -u juanc git clone https://github.com/solana-labs/solana /home/juanc/programs/solana
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
