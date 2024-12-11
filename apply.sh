@@ -31,7 +31,7 @@ git branch --set-upstream-to=origin/main main
 git pull
 source ~/.bashrc
 mkdir -p /home/juanc/programs
-[ ! -d "/home/juanc/programs/solana" ] && git clone https://github.com/solana-labs/solana/tree/v1.18 /home/juanc/programs/solana
+[ ! -d "/home/juanc/programs/solana" ] && git clone -b v1.18 https://github.com/solana-labs/solana.git /home/juanc/programs/solana
 touch /home/juanc/programs/solana/rust-toolchain.toml
 rm /home/juanc/programs/solana/rust-toolchain.toml
 touch /home/juanc/programs/solana/rust-toolchain.toml
