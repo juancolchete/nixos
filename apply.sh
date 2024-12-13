@@ -62,9 +62,8 @@ git init
 git config pull.rebase false
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
 git branch -m main
-git branch --set-upstream-to=origin/main main
 git pull origin main
-git push --set-upstream-to=origin/main main
+git branch --set-upstream-to=origin/main main
 source ~/.bashrc
 mkdir -p /home/juanc/programs
 cd /home/juanc/programs
