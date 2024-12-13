@@ -58,10 +58,12 @@ if [ ! -f /home/juanc/.wakatime.cfg ]; then
   echo api_key=$wakatimeApiKey >> /home/juanc/.wakatime.cfg
 fi
 cd /etc/nixos
+git config --global init.defaultBranch main
 git init
 git config pull.rebase false
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
 git branch -m main
+rm configuration.nix
 git pull origin main
 git branch --set-upstream-to=origin/main main
 source ~/.bashrc
