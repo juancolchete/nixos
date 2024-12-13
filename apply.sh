@@ -67,6 +67,7 @@ rm configuration.nix
 rm apply.sh
 git pull origin main
 git branch --set-upstream-to=origin/main main
+git push --set-upstream origin main
 source ~/.bashrc
 mkdir -p /home/juanc/programs
 cd /home/juanc/programs
