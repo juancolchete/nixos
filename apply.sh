@@ -1,4 +1,4 @@
-if [ -e "/etc/nixos/.env" ]; then
+if [ -f "/etc/nixos/.env" ]; then
     source /etc/nixos/.env
 fi
 sudo chown -R juanc /etc/nixos
@@ -11,6 +11,12 @@ fi
 if [[ -z "$wakatimeApiKey" ]]; then
   read -p 'wakatimeApiKey: ' wakatimeApiKey
 fi
+if [ ! -f "/etc/nixos/.env" ]; then
+    touch /etc/nixos/.env
+    echo server=$server >> /etc/nixos/.env
+    echo share=$share >> /etc/nixos/.env
+    echo wakatimeApiKey=$wakatimeApiKey >> /etc/nixos/.env
+fi
 if [ ! -f ~/.ssh/github ]; then
   gio copy smb://$server/$share/keys/github ~/.ssh/github
   chmod  400 ~/.ssh/github
@@ -21,6 +27,9 @@ fi
 if [ ! -f /etc/nixos/env.nix ]; then
   gio copy smb://$server/$share/keys/envs/env.nix /etc/nixos/env.nix
 fi
+if [ ! -f /etc/nixos/.env ]; then
+  gio copy smb://$server/$share/keys/envs/.env /etc/nixos/.env
+fi
 if [ ! -d /home/juanc/.config/nvim ]; then
   git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
 fi
@@ -30,8 +39,12 @@ sudo nix-channel --update
 sudo nixos-rebuild switch
 if [ ! -d /home/juanc/.wakatime ]; then
   mkdir /home/juanc/.wakatime
-  wget https://github.com/wakatime/wakatime-cli/releases/download/v1.106.1/wakatime-cli-linux-amd64.zip -o /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip
-  unzip /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip -d /home/juanc/.wakatime/wakatime-cli 
+  cd /home/juanc/.wakatime
+  wget https://github.com/wakatime/wakatime-cli/releases/download/v1.106.1/wakatime-cli-linux-amd64.zip
+  unzip /home/juanc/.wakatime/wakatime-cli-linux-amd64 -d /home/juanc/.wakatime
+  mv wakatime-cli-linux-amd64 wakatime-cli
+  rm /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip
+  nvim +PlugInstall +qa
 fi
 if [ ! -f /home/juanc/.wakatime.cfg ]; then
   echo [settings] >> /home/juanc/.wakatime.cfg
@@ -53,6 +66,6 @@ git branch --set-upstream-to=origin/main main
 git pull
 source ~/.bashrc
 mkdir -p /home/juanc/programs
+cd /home/juanc/programs
 [ ! -d "/home/juanc/programs/solana" ] && git clone -b v1.18 https://github.com/solana-labs/solana.git /home/juanc/programs/solana
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
-
