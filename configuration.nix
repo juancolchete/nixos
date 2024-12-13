@@ -27,7 +27,7 @@ in {
 
   # Enable networking
   networking.networkmanager.enable = true;
-
+  virtualisation.docker.enable = true;
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
@@ -85,7 +85,7 @@ in {
   users.users.juanc = {
     isNormalUser = true;
     description = "juanc";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       rustdesk
       unstable.neovim
