@@ -11,7 +11,7 @@ fi
 if [[ -z "$wakatimeApiKey" ]]; then
   read -p 'wakatimeApiKey: ' wakatimeApiKey
 fi
-if [ ! -f "/etc/nixos/.env" ]; then
+if [ ! -f /etc/nixos/.env ]; then
     touch /etc/nixos/.env
     echo server=$server >> /etc/nixos/.env
     echo share=$share >> /etc/nixos/.env
