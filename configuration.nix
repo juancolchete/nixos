@@ -142,6 +142,7 @@ in {
       zlib
       steam-run
       solana-cli
+      unzip
   ];
   home-manager.users.juanc = {
     programs.git = {
