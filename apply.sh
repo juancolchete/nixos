@@ -30,13 +30,13 @@ fi
 if [ ! -f /etc/nixos/.env ]; then
   gio copy smb://$server/$share/keys/envs/.env /etc/nixos/.env
 fi
-if [ ! -d /home/juanc/.config/nvim ]; then
-  git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
-fi
 curl https://raw.githubusercontent.com/juancolchete/nixos/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
 sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
 sudo nix-channel --update 
 sudo nixos-rebuild switch
+if [ ! -d /home/juanc/.config/nvim ]; then
+  git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
+fi
 if [ ! -d /home/juanc/.wakatime ]; then
   mkdir /home/juanc/.wakatime
   cd /home/juanc/.wakatime
