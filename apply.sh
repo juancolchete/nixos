@@ -59,10 +59,9 @@ if [ ! -f /home/juanc/.wakatime.cfg ]; then
 fi
 cd /etc/nixos
 git config --global init.defaultBranch main
-git init
+git init -b main
 git config pull.rebase false
 git remote -v | grep -w origin && git remote set-url origin git@github.com:juancolchete/nixos.git || git remote add origin git@github.com:juancolchete/nixos.git
-git branch -m main
 rm configuration.nix
 rm apply.sh
 git pull origin main
