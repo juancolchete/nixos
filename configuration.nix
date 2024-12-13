@@ -103,7 +103,7 @@ in {
       spotify
       signal-desktop
       telegram-desktop
-       
+      brave 
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
