@@ -21,21 +21,29 @@ fi
 if [ ! -f /etc/nixos/env.nix ]; then
   gio copy smb://$server/$share/keys/envs/env.nix /etc/nixos/env.nix
 fi
-echo ''
-[settings]
-debug=false
-hidefilenames = false
-ignore =
-    COMMIT_EDITMSG$
-    PULLREQ_EDITMSG$
-    MERGE_MSG$
-    TAG_EDITMSG$
-api_key=$wakatimeApiKey
-'' >> ~/.wakatime.cfg
+if [ ! -d /home/juanc/.config/nvim ]; then
+  git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
+fi
 curl https://raw.githubusercontent.com/juancolchete/nixos/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
 sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
 sudo nix-channel --update 
 sudo nixos-rebuild switch
+if [ ! -d /home/juanc/.wakatime ]; then
+  mkdir /home/juanc/.wakatime
+  wget https://github.com/wakatime/wakatime-cli/releases/download/v1.106.1/wakatime-cli-linux-amd64.zip -o /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip
+  unzip /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip -d /home/juanc/.wakatime/wakatime-cli 
+fi
+if [ ! -f /home/juanc/.wakatime.cfg ]; then
+  echo [settings] >> /home/juanc/.wakatime.cfg
+  echo debug=false >> /home/juanc/.wakatime.cfg
+  echo hidefilenames = false >> /home/juanc/.wakatime.cfg
+  echo ignore = >> /home/juanc/.wakatime.cfg
+  echo "    COMMIT_EDITMSG$" >> /home/juanc/.wakatime.cfg
+  echo "    PULLREQ_EDITMSG$" >> /home/juanc/.wakatime.cfg
+  echo "    MERGE_MSG$" >> /home/juanc/.wakatime.cfg
+  echo "    TAG_EDITMSG$" >> /home/juanc/.wakatime.cfg
+  echo api_key=$wakatimeApiKey >> /home/juanc/.wakatime.cfg
+fi
 cd /etc/nixos
 git init
 git config pull.rebase false
