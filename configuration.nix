@@ -103,7 +103,8 @@ in {
       spotify
       signal-desktop
       telegram-desktop
-      brave 
+      brave
+      gitkraken 
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
