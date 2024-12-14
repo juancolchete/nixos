@@ -105,7 +105,7 @@ in {
       telegram-desktop
       brave
       gitkraken
-      tor
+      tor-browser
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
