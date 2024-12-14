@@ -104,7 +104,8 @@ in {
       signal-desktop
       telegram-desktop
       brave
-      gitkraken 
+      gitkraken
+      tor
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
