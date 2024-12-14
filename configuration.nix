@@ -195,10 +195,10 @@ in {
     nerdfonts
   ];
   systemd.sleep.extraConfig = ''
-   AllowSuspend=no
-   AllowHibernation=no
-   AllowHybridSleep=no
-   AllowSuspendThenHibernate=no
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
   '';
   system.stateVersion = "24.11"; # Did you read the comment?
   system.activationScripts.rustup = ''
@@ -220,7 +220,7 @@ in {
     echo alias build-sbf=cargo-build-sbf >> /home/juanc/.bashrc
     source /home/juanc/.bashrc
     alias build-sbf=cargo-build-sbf
-'';
+  '';
 
    
 }
