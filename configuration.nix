@@ -191,6 +191,9 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  fonts.packages = with pkgs; [
+    nerdfonts
+  ];
   system.stateVersion = "24.11"; # Did you read the comment?
   system.activationScripts.rustup = ''
     PATH=${pkgs.rustup}/bin:/home/juanc/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/nix/store/8rq01kg6lng5d1fz5wd0mfn2yjaww9sq-system-path/bin/tar:/run/current-system/sw/bin/clang:$PATH
