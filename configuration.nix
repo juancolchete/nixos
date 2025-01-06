@@ -145,6 +145,7 @@ in {
       steam-run
       solana-cli
       unzip
+      gnome-network-displays
   ];
   home-manager.users.juanc = {
     programs.git = {
