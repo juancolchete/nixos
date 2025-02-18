@@ -163,6 +163,7 @@ in {
      IdentityFile ~/.ssh/github
 
   '';
+  programs.cfs-zen-tweaks.enable = true;
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg0 = vars.wg0; 
