@@ -72,3 +72,4 @@ mkdir -p /home/juanc/programs
 cd /home/juanc/programs
 [ ! -d "/home/juanc/programs/solana" ] && git clone -b v1.18 https://github.com/solana-labs/solana.git /home/juanc/programs/solana
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
+git clone git@github.com:juancolchete/nvim.git /home/juanc/.config
