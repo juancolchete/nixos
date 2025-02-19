@@ -57,6 +57,9 @@ if [ ! -f /home/juanc/.wakatime.cfg ]; then
   echo "    TAG_EDITMSG$" >> /home/juanc/.wakatime.cfg
   echo api_key=$wakatimeApiKey >> /home/juanc/.wakatime.cfg
 fi
+chmod  400 /home/juanc/.ssh/github
+eval "$(ssh-agent -s)"
+ssh-add /home/juanc/.ssh/github
 cd /etc/nixos
 git config --global init.defaultBranch main
 git init -b main
