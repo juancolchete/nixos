@@ -97,12 +97,12 @@ in {
       ripgrep
       xsel
       ngrok
-      corepack_22
+      unstable.corepack_22
       keepassxc
       discord
       spotify
       signal-desktop
-      telegram-desktop
+      unstable.telegram-desktop
       brave
       gitkraken
       tor-browser
@@ -163,7 +163,6 @@ in {
      IdentityFile ~/.ssh/github
 
   '';
-  programs.cfs-zen-tweaks.enable = true;
   networking.wireguard.enable = true;
   networking.wg-quick.interfaces = {
     wg0 = vars.wg0; 
