@@ -102,6 +102,7 @@ in {
       gitkraken
       tor-browser
       tmux
+      alacritty
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
