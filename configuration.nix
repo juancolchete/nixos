@@ -52,7 +52,9 @@ in {
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
+  services.xserver.displayManager.gdm.wayland = false;
+  programs.ssh.forwardX11 = true;
+  programs.ssh.setXAuthLocation = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -96,6 +98,7 @@ in {
       nodejs
       ripgrep
       xsel
+      xclip
       ngrok
       unstable.corepack_22
       keepassxc
@@ -106,6 +109,8 @@ in {
       brave
       gitkraken
       tor-browser
+      kitty
+      tmux
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
