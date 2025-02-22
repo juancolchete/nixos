@@ -103,6 +103,7 @@ in {
       tor-browser
       tmux
       alacritty
+      imagemagick
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
