@@ -87,7 +87,7 @@ in {
       git
       chromium
       lazygit
-      nodejs
+      unstable.nodejs_22
       ripgrep
       xsel
       xclip
@@ -105,6 +105,9 @@ in {
       alacritty
       imagemagick
       zip
+      htop
+      lunarvim
+      fish
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
