@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs,lib ,... }:
-
+import (fetchTarball “https://github.com/dfinity/sdk/releases/download/0.25.0/dfx-0.25.0-x86_64-linux.tar.gz”)
 let 
 unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };  
 vars = import ./env.nix;
@@ -148,6 +148,7 @@ in {
       solana-cli
       unzip
       gnome-network-displays
+      insomnia
   ];
   home-manager.users.juanc = {
     programs.git = {
