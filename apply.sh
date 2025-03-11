@@ -77,3 +77,5 @@ cd /home/juanc/programs
 sh /home/juanc/programs/solana/scripts/cargo-install-all.sh /home/juanc/programs
 git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
 nvim --headless +PlugInstall +qa!
+sudo wget https://github.com/dfinity/sdk/releases/download/0.25.0/dfx-0.25.0-x86_64-linux.tar.gz -O /bin/dfx.tar.gz
+sudo tar xzf -O /bin/dfx.tar.gz -C /bin
