@@ -81,6 +81,7 @@ in {
     description = "juanc";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
+      vscodium
       rustdesk
       unstable.neovim
       docker
