@@ -207,6 +207,7 @@ in {
     rm /home/juanc/.bashrc
     touch /home/juanc/.bashrc 
     echo export PATH=${pkgs.solana-cli}:/home/juanc/programs/bin:'$PATH' >> /home/juanc/.bashrc
+    echo export PATH=/bin/dfx:'$PATH' >> /home/juanc/.bashrc
     echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/juanc/.bashrc
     echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/juanc/.bashrc
     echo ${pkgs.systemd.dev}
