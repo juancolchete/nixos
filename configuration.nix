@@ -109,6 +109,7 @@ in {
       htop
       lunarvim
       fish
+      vivaldi
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
