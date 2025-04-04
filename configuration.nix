@@ -110,6 +110,7 @@ in {
       lunarvim
       fish
       vivaldi
+      opera
    ];
   };
   environment.variables.GTK_THEME = "Adwaita:dark";
@@ -151,6 +152,9 @@ in {
       unzip
       gnome-network-displays
       insomnia
+      bitcoin
+      bitcoind
+      jq
   ];
   home-manager.users.juanc = {
     programs.git = {
