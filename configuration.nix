@@ -52,6 +52,8 @@ in {
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Enables Flatpak.
+  services.flatpak.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -71,11 +73,32 @@ in {
     #media-session.enable = true;
   };
 
+    services.jack = {
+    jackd.enable = true;
+    # support ALSA only programs via ALSA JACK PCM plugin
+    alsa.enable = false;
+    # support ALSA only programs via loopback device (supports programs like Steam)
+    loopback = {
+      enable = true;
+      # buffering parameters for dmix device to work with ALSA only semi-professional sound programs
+      #dmixConfig = ''
+      #  period_size 2048
+      #'';
+    };
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  
+ 
+  users.users.alice = {
+    isNormalUser  = true;
+    home  = "/home/alice";
+    description  = "Alice Foobar";
+    extraGroups  = [ "wheel" "networkmanager" ];
+  };
+
   users.users.juanc = {
     isNormalUser = true;
     description = "juanc";
@@ -152,9 +175,14 @@ in {
       unzip
       gnome-network-displays
       insomnia
+      autoconf
       bitcoin
       bitcoind
       jq
+      nss
+      nspr
+      gimp
+      appimagekit
   ];
   home-manager.users.juanc = {
     programs.git = {
