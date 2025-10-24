@@ -8,15 +8,6 @@ fi
 if [[ -z "$share" ]]; then
   read -p 'share: ' share
 fi
-if [[ -z "$wakatimeApiKey" ]]; then
-  read -p 'wakatimeApiKey: ' wakatimeApiKey
-fi
-if [ ! -f /etc/nixos/.env ]; then
-    touch /etc/nixos/.env
-    echo server=$server >> /etc/nixos/.env
-    echo share=$share >> /etc/nixos/.env
-   echo wakatimeApiKey=$wakatimeApiKey >> /etc/nixos/.env
-fi
 if [ ! -f ~/.ssh/github ]; then
   gio copy smb://$server/$share/keys/github ~/.ssh/github
   chmod  400 ~/.ssh/github
