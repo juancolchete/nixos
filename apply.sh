@@ -28,26 +28,6 @@ sudo nixos-rebuild switch
 if [ ! -d /home/juanc/.config/nvim ]; then
   git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
 fi
-if [ ! -d /home/juanc/.wakatime ]; then
-  mkdir /home/juanc/.wakatime
-  cd /home/juanc/.wakatime
-  wget https://github.com/wakatime/wakatime-cli/releases/download/v1.106.1/wakatime-cli-linux-amd64.zip
-  unzip /home/juanc/.wakatime/wakatime-cli-linux-amd64 -d /home/juanc/.wakatime
-  mv wakatime-cli-linux-amd64 wakatime-cli
-  rm /home/juanc/.wakatime/wakatime-cli-linux-amd64.zip
-  nvim +PlugInstall +qa
-fi
-if [ ! -f /home/juanc/.wakatime.cfg ]; then
-  echo [settings] >> /home/juanc/.wakatime.cfg
-  echo debug=false >> /home/juanc/.wakatime.cfg
-  echo hidefilenames = false >> /home/juanc/.wakatime.cfg
-  echo ignore = >> /home/juanc/.wakatime.cfg
-  echo "    COMMIT_EDITMSG$" >> /home/juanc/.wakatime.cfg
-  echo "    PULLREQ_EDITMSG$" >> /home/juanc/.wakatime.cfg
-  echo "    MERGE_MSG$" >> /home/juanc/.wakatime.cfg
-  echo "    TAG_EDITMSG$" >> /home/juanc/.wakatime.cfg
-  echo api_key=$wakatimeApiKey >> /home/juanc/.wakatime.cfg
-fi
 chmod  400 /home/juanc/.ssh/github
 eval "$(ssh-agent -s)"
 ssh-add /home/juanc/.ssh/github
