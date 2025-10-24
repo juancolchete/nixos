@@ -79,3 +79,7 @@ git clone git@github.com:juancolchete/nvim.git /home/juanc/.config/nvim
 nvim --headless +PlugInstall +qa!
 sudo wget https://github.com/dfinity/sdk/releases/download/0.25.0/dfx-0.25.0-x86_64-linux.tar.gz -O /home/juanc/programs/bin/dfx.tar.gz
 sudo tar xzf /home/juanc/programs/bin/dfx.tar.gz -C /home/juanc/programs/bin/
+mkdir -p ~/.npm-global
+npm config set prefix '~/.npm-global'
+export PATH="$HOME/.npm-global/bin:$PATH"
+npm install -g solidity-language-server
